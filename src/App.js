@@ -10,13 +10,21 @@ import './styles.css'
 const App = () => {
   return (
     <GlobalContextProvider>
-      <div className="container">
-        <div className="app-wrapper">
+      <div className="container-fluid">
+        <div className="row justify-content-md-center">
           <Header />
-          <Balance />
-          <AddTransaction />
-          <IncomeList />
-          <ExpenseList />
+        </div>
+        <div className="row">
+          <div className="col-4 py-2">
+            <Balance />
+          </div>
+          <div className="col-4 py-2">
+            <AddTransaction />
+          </div>
+          <div className="col-12">
+            <IncomeList />
+            <ExpenseList />
+          </div>
         </div>
       </div>
     </GlobalContextProvider>

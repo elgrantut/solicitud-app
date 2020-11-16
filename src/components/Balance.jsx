@@ -23,15 +23,15 @@ const Balance = () => {
   )
 
   return (
-    <div className="balance">
+    <div>
       <h2>Your Balance</h2>
       <h3>${(totalIncome - totalExpenses).toFixed(2)}</h3>
-      <div className="income-expense">
-        <div className="plus">
+      <div>
+        <div>
           <h3>Income</h3>
           <p>${totalIncome}</p>
         </div>
-        <div className="minus">
+        <div>
           <h3>Expenses</h3>
           <p>$ {totalExpenses}</p>
         </div>

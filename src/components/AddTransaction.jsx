@@ -1,16 +1,16 @@
 import React, { useState, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { GlobalContext } from '../context/GlobalState'
+import { IVA } from '../const/impuestos'
+
+const INIT_INCOME = { incomeText: '', incomeAmount: 0, incomeIva: 0 }
 
 const AddTransaction = () => {
   const { addIncome, addExpense } = useContext(GlobalContext)
 
   ///Fallows State Inputs
 
-  const [income, setIncome] = useState({
-    incomeText: '',
-    incomeAmount: 0
-  })
+  const [income, setIncome] = useState(INIT_INCOME)
   const [expense, setExpense] = useState({
     expenseText: '',
     expenseAmount: 0
@@ -45,26 +45,26 @@ const AddTransaction = () => {
         id: uuidv4(),
         incomeText,
         incomeAmount: Number(incomeAmount),
-        iva: incomeAmount * 0.21
+        incomeIva: incomeAmount * IVA
       }
       addIncome(newIncomeTransaction)
       setIncome({
         incomeText: '',
         incomeAmount: 0,
-        iva: 0
+        incomeIva: 0
       })
     } else if (incomeText && incomeAmount) {
       const newIncomeTransaction = {
         id: uuidv4(),
         incomeText,
         incomeAmount: Number(incomeAmount),
-        iva: 0
+        incomeIva: 0
       }
       addIncome(newIncomeTransaction)
       setIncome({
         incomeText: '',
         incomeAmount: 0,
-        iva: 0
+        incomeIva: 0
       })
     } else {
       alert('A text and amount must be provided')
@@ -90,16 +90,11 @@ const AddTransaction = () => {
   }
 
   return (
-    <div className="form-wrapper">
+    <div>
       <form onSubmit={onSubmitIncome}>
-        <div className="input-group income">
-          <label>Iva</label>
+        <div className="form-group">
           <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
-          />
-          <input
+            className="form-control"
             type="text"
             name="incomeText"
             value={incomeText}
@@ -107,7 +102,10 @@ const AddTransaction = () => {
             autoComplete="off"
             onChange={onChangeIncome}
           />
+        </div>
+        <div className="form-group">
           <input
+            className="form-control"
             type="number"
             name="incomeAmount"
             value={incomeAmount}
@@ -115,12 +113,24 @@ const AddTransaction = () => {
             autoComplete="off"
             onChange={onChangeIncome}
           />
-          <input type="submit" value="submit" />
         </div>
-      </form>
-      <form onSubmit={onSubmitExpense}>
-        <div className="input-group expense">
+        <div className="form-group form-check">
           <input
+            className="form-check-input"
+            type="checkbox"
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+          />
+          <label className="form-check-label">Iva</label>
+        </div>
+        <button className="btn btn-primary" type="submit" value="submit">
+          submit
+        </button>
+      </form>
+      <form className="mt-3" onSubmit={onSubmitExpense}>
+        <div className="form-group">
+          <input
+            className="form-control"
             type="text"
             name="expenseText"
             value={expenseText}
@@ -128,7 +138,10 @@ const AddTransaction = () => {
             autoComplete="off"
             onChange={onChangeExpense}
           />
+        </div>
+        <div className="form-group">
           <input
+            className="form-control"
             type="number"
             name="expenseAmount"
             value={expenseAmount}
@@ -136,11 +149,11 @@ const AddTransaction = () => {
             autoComplete="off"
             onChange={onChangeExpense}
           />
-          <input type="submit" value="submit" />
         </div>
+        <button className="btn btn-primary" type="submit" value="submit">
+          Submit
+        </button>
       </form>
-
-      <form></form>
     </div>
   )
 }
