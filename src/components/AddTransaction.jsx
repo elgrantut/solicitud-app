@@ -6,18 +6,13 @@ import { IVA } from '../const/impuestos'
 const INIT_INCOME = { incomeText: '', incomeAmount: 0, incomeIva: 0 }
 
 const AddTransaction = () => {
-  const { addIncome, addExpense } = useContext(GlobalContext)
+  const { addIncome } = useContext(GlobalContext)
 
   ///Fallows State Inputs
 
   const [income, setIncome] = useState(INIT_INCOME)
-  const [expense, setExpense] = useState({
-    expenseText: '',
-    expenseAmount: 0
-  })
 
   const { incomeText, incomeAmount } = income
-  const { expenseText, expenseAmount } = expense
 
   // Chceckbox state
 
@@ -29,11 +24,6 @@ const AddTransaction = () => {
     const { name, value } = e.target
     setIncome({ ...income, [name]: value })
     console.log(income)
-  }
-
-  const onChangeExpense = (e) => {
-    const { name, value } = e.target
-    setExpense({ ...expense, [name]: value })
   }
 
   // Form Submit handlers
@@ -65,24 +55,6 @@ const AddTransaction = () => {
         incomeText: '',
         incomeAmount: 0,
         incomeIva: 0
-      })
-    } else {
-      alert('A text and amount must be provided')
-    }
-  }
-
-  const onSubmitExpense = (e) => {
-    e.preventDefault()
-    if (incomeText && incomeAmount) {
-      const newExpenseTransaction = {
-        id: uuidv4(),
-        expenseText,
-        expenseAmount: Number(expenseAmount)
-      }
-      addExpense(newExpenseTransaction)
-      setExpense({
-        expenseText: '',
-        expenseAmount: 0
       })
     } else {
       alert('A text and amount must be provided')
@@ -125,33 +97,6 @@ const AddTransaction = () => {
         </div>
         <button className="btn btn-primary" type="submit" value="submit">
           submit
-        </button>
-      </form>
-      <form className="mt-3" onSubmit={onSubmitExpense}>
-        <div className="form-group">
-          <input
-            className="form-control"
-            type="text"
-            name="expenseText"
-            value={expenseText}
-            placeholder="Add Expense..."
-            autoComplete="off"
-            onChange={onChangeExpense}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            className="form-control"
-            type="number"
-            name="expenseAmount"
-            value={expenseAmount}
-            placeholder="Amount"
-            autoComplete="off"
-            onChange={onChangeExpense}
-          />
-        </div>
-        <button className="btn btn-primary" type="submit" value="submit">
-          Submit
         </button>
       </form>
     </div>
