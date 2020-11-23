@@ -13,11 +13,19 @@ const Balance = () => {
     0
   )
 
+  const IncomeIvas = incomeTransactions.map(
+    (incomeTransaction) => incomeTransaction.incomeIva
+  )
+
+  const totalIva = IncomeIvas.reduce((acc, item) => (acc += item), 0)
+
+  const totalBalance = totalIncome + totalIva
+
   return (
     <div>
-      <h2>Tu solicitud</h2>
+      <h2>Tu solicitud: </h2>
       <div>
-        <h5 className="display-4 text-primary">${totalIncome}</h5>
+        <h5 className="display-4 text-success">${totalBalance}</h5>
       </div>
     </div>
   )

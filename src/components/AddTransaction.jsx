@@ -17,11 +17,12 @@ const AddTransaction = () => {
 
   const [income, setIncome] = useState(INIT_INCOME)
 
-  const { incomeText, incomeAmount } = income
+  const { incomeText, incomeAmount, incomeIva, incomeAportes } = income
 
   // Chceckbox state
 
-  const [isChecked, setIsChecked] = useState(false)
+  const [ivaChceckBox, setIvaCheckbox] = useState(false)
+  const [aportesCheckBox, setAprotesCheckBox] = useState(false)
 
   /// Listen for Input Change
 
@@ -31,11 +32,19 @@ const AddTransaction = () => {
     console.log(income)
   }
 
+  const handleAportesCheckBox = (e) => {
+    setAprotesCheckBox(e.target.checked)
+  }
+
+  const handleIvaCheckBox = (e) => {
+    setIvaCheckbox(e.target.checked)
+  }
+
   // Form Submit handlers
 
   const onSubmitIncome = (e) => {
     e.preventDefault()
-    if (incomeText && incomeAmount && isChecked) {
+    if (incomeText && incomeAmount && ivaChceckBox) {
       const newIncomeTransaction = {
         id: uuidv4(),
         incomeText,
@@ -96,8 +105,8 @@ const AddTransaction = () => {
             className="form-check-input"
             name="incomeIva"
             type="checkbox"
-            checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
+            checked={ivaChceckBox}
+            onChange={handleIvaCheckBox}
           />
           <label className="form-check-label">Iva</label>
         </div>
@@ -106,8 +115,8 @@ const AddTransaction = () => {
             className="form-check-input"
             name="incomeAportes"
             type="checkbox"
-            checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
+            checked={aportesCheckBox}
+            onChange={handleAportesCheckBox}
           />
           <label className="form-check-label">Aportes</label>
         </div>

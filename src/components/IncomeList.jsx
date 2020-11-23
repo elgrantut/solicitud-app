@@ -7,7 +7,7 @@ const IncomeList = () => {
   console.log(incomeTransactions)
   return (
     <div>
-      <h5>Items de Carpeta</h5>
+      <h5 className="text-primary">Items de Carpeta</h5>
       <ul className="list-group">
         {incomeTransactions.map((incomeTransaction) => (
           <IncomeTransaction

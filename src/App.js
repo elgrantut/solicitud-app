@@ -11,14 +11,14 @@ const App = () => {
     <GlobalContextProvider>
       <div className="container">
         <div className="row justify-content-md-center">
-          <div className="col col-md-12 bg-primary">
+          <div className="col col-md-12 bg-primary py-3">
             <Header />
           </div>
-          <div className="col-md-6 bg-danger">
+          <div className="col-md-6  py-3">
             <AddTransaction />
             <Balance />
           </div>
-          <div className="col-md-6 bg-success">
+          <div className="col-md-6 py-3">
             <IncomeList />
           </div>
         </div>
