@@ -17,7 +17,7 @@ const Balance = () => {
     <div>
       <h2>Tu solicitud</h2>
       <div>
-        <p>${totalIncome}</p>
+        <h5 className="display-4 text-primary">${totalIncome}</h5>
       </div>
     </div>
   )

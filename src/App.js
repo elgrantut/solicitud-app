@@ -9,18 +9,16 @@ import './styles.css'
 const App = () => {
   return (
     <GlobalContextProvider>
-      <div className="container-fluid">
+      <div className="container">
         <div className="row justify-content-md-center">
-          <Header />
-        </div>
-        <div className="row">
-          <div className="col-4 py-2">
+          <div className="col col-md-12 bg-primary">
+            <Header />
+          </div>
+          <div className="col-md-6 bg-danger">
+            <AddTransaction />
             <Balance />
           </div>
-          <div className="col-4 py-2">
-            <AddTransaction />
-          </div>
-          <div className="col-12">
+          <div className="col-md-6 bg-success">
             <IncomeList />
           </div>
         </div>

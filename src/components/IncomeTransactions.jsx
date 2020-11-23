@@ -4,7 +4,7 @@ import { GlobalContext } from '../context/GlobalState'
 const IncomeTransactions = ({ incomeTransaction, isChecked }) => {
   const { deleteTransaction } = useContext(GlobalContext)
   return (
-    <li>
+    <li className="list-group-item">
       <span>{incomeTransaction.incomeText}</span>
       <span>{incomeTransaction.incomeAmount}</span>
       {incomeTransaction.incomeIva ? (

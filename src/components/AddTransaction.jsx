@@ -3,7 +3,12 @@ import { v4 as uuidv4 } from 'uuid'
 import { GlobalContext } from '../context/GlobalState'
 import { IVA } from '../const/impuestos'
 
-const INIT_INCOME = { incomeText: '', incomeAmount: 0, incomeIva: 0 }
+const INIT_INCOME = {
+  incomeText: '',
+  incomeAmount: 0,
+  incomeIva: 0,
+  incomeAportes: 0
+}
 
 const AddTransaction = () => {
   const { addIncome } = useContext(GlobalContext)
@@ -62,7 +67,7 @@ const AddTransaction = () => {
   }
 
   return (
-    <div>
+    <div className="col p-2">
       <form onSubmit={onSubmitIncome}>
         <div className="form-group">
           <input
@@ -86,18 +91,31 @@ const AddTransaction = () => {
             onChange={onChangeIncome}
           />
         </div>
-        <div className="form-group form-check">
+        <div className="form-check form-check-inline">
           <input
             className="form-check-input"
+            name="incomeIva"
             type="checkbox"
             checked={isChecked}
             onChange={(e) => setIsChecked(e.target.checked)}
           />
           <label className="form-check-label">Iva</label>
         </div>
-        <button className="btn btn-primary" type="submit" value="submit">
-          submit
-        </button>
+        <div className="form-group form-check-inline">
+          <input
+            className="form-check-input"
+            name="incomeAportes"
+            type="checkbox"
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+          />
+          <label className="form-check-label">Aportes</label>
+        </div>
+        <div className="form-group">
+          <button className="btn btn-primary" type="submit" value="submit">
+            submit
+          </button>
+        </div>
       </form>
     </div>
   )
