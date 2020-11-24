@@ -6,9 +6,12 @@ const IncomeTransactions = ({ incomeTransaction }) => {
   return (
     <li className="list-group-item ">
       <span>{incomeTransaction.incomeText}: </span>
-      <span>{incomeTransaction.incomeAmount}</span>
+      <span>${incomeTransaction.incomeAmount}</span>
       {incomeTransaction.incomeIva ? (
         <span> / IVA: ${incomeTransaction.incomeIva}</span>
+      ) : null}
+      {incomeTransaction.incomeAportes ? (
+        <span> / Aportes: ${incomeTransaction.incomeAportes}</span>
       ) : null}
       <button
         className="btn text-danger"

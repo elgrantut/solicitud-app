@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { GlobalContext } from '../context/GlobalState'
-import { IVA } from '../const/impuestos'
+import { IVA, APORTES } from '../const/impuestos'
 
 const INIT_INCOME = {
   incomeText: '',
@@ -34,6 +34,7 @@ const AddTransaction = () => {
 
   const handleAportesCheckBox = (e) => {
     setAprotesCheckBox(e.target.checked)
+    setIncome({ ...income, incomeAportes: incomeAmount * APORTES })
   }
 
   const handleIvaCheckBox = (e) => {
@@ -60,6 +61,7 @@ const AddTransaction = () => {
       incomeAportes: 0
     })
     setIvaCheckbox(false)
+    setAprotesCheckBox(false)
   }
 
   return (
