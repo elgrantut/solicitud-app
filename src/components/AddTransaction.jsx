@@ -38,41 +38,28 @@ const AddTransaction = () => {
 
   const handleIvaCheckBox = (e) => {
     setIvaCheckbox(e.target.checked)
+    setIncome({ ...income, incomeIva: incomeAmount * IVA })
   }
 
   // Form Submit handlers
 
   const onSubmitIncome = (e) => {
     e.preventDefault()
-    if (incomeText && incomeAmount && ivaChceckBox) {
-      const newIncomeTransaction = {
-        id: uuidv4(),
-        incomeText,
-        incomeAmount: Number(incomeAmount),
-        incomeIva: incomeAmount * IVA
-      }
-      addIncome(newIncomeTransaction)
-      setIncome({
-        incomeText: '',
-        incomeAmount: 0,
-        incomeIva: 0
-      })
-    } else if (incomeText && incomeAmount) {
-      const newIncomeTransaction = {
-        id: uuidv4(),
-        incomeText,
-        incomeAmount: Number(incomeAmount),
-        incomeIva: 0
-      }
-      addIncome(newIncomeTransaction)
-      setIncome({
-        incomeText: '',
-        incomeAmount: 0,
-        incomeIva: 0
-      })
-    } else {
-      alert('A text and amount must be provided')
+    const newIncomeTransaction = {
+      id: uuidv4(),
+      incomeText,
+      incomeAmount: Number(incomeAmount),
+      incomeIva,
+      incomeAportes
     }
+    addIncome(newIncomeTransaction)
+    setIncome({
+      incomeText: '',
+      incomeAmount: 0,
+      incomeIva: 0,
+      incomeAportes: 0
+    })
+    setIvaCheckbox(false)
   }
 
   return (
